@@ -58,6 +58,7 @@ public class PayOutView extends TransparentPanel {
         tfNote = new javax.swing.JTextArea();
 
         numberSelectionView.setTitle(com.floreantpos.POSConstants.AMOUNT_PAID_OUT);
+        numberSelectionView.setDecimalAllowed(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12));
         jLabel1.setText(com.floreantpos.POSConstants.PAY_OUT_REASON);
