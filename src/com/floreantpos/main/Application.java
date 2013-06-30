@@ -62,7 +62,7 @@ public class Application {
 	public final static String VERSION = ApplicationConfig.getConfiguration().getString("floreantpos.version");
 
 	private Application() {
-		applicationIcon = new ImageIcon(getClass().getResource("/icons/icon.png"));
+		applicationIcon = new ImageIcon(getClass().getClassLoader().getResource("icons/icon.png"));
 		posWindow = new PosWindow();
 		posWindow.setGlassPaneVisible(true);
 		posWindow.setTitle(getTitle());
