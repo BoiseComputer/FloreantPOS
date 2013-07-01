@@ -110,13 +110,13 @@ public class Application {
 	}
 
 	public void initDatabase() {
-		if(!ApplicationConfig.checkDatabaseConnection()) {
+		//if(!ApplicationConfig.checkDatabaseConnection()) {
 			//DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(getPosWindow(), false );
 			//dialog.setTitle(com.floreantpos.POSConstants.DATABASE_CONNECTION_ERROR);
 			//dialog.setExitOnClose(false);
 			//dialog.pack();
 			//dialog.open();
-		}
+		//}
 
 
 		try {
