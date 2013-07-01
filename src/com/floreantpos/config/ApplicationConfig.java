@@ -120,7 +120,6 @@ public class ApplicationConfig {
 		} finally {
 			try {
 				connection.close();
-				return true;
 			}catch(Throwable t) {}
 		}
 	}
