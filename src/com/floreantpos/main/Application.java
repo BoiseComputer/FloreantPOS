@@ -112,6 +112,7 @@ public class Application {
 
 		try {
 			((GlassPane) posWindow.getGlassPane()).setMessage(com.floreantpos.POSConstants.LOADING);
+			
 			_RootDAO.initialize();
 
 			int terminalId = ApplicationConfig.getTerminalId();
@@ -127,6 +128,7 @@ public class Application {
 
 			TerminalDAO terminalDAO = new TerminalDAO();
 			Terminal terminal2 = terminalDAO.get(new Integer(terminalId));
+			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Terminal");
 			if (terminal2 == null) {
 				terminal2 = new Terminal();
 				terminal2.setId(terminalId);
@@ -138,11 +140,13 @@ public class Application {
 			ApplicationConfig.setTerminalId(terminalId);
 			this.terminal = terminal2;
 
+			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Printers");
 			printConfiguration = new PrinterConfigurationDAO().get(PrinterConfiguration.ID);
 			if(printConfiguration == null) {
 				printConfiguration = new PrinterConfiguration();
 			}
 
+			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Restaurant");
 			refreshRestaurant();
 
 			Calendar calendar = Calendar.getInstance();

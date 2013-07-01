@@ -295,16 +295,12 @@ public class SalesExceptionReport {
 			switch (columnIndex) {
 			case 0:
 				return data.code;
-
 			case 1:
 				return data.name;
-
 			case 2:
 				return data.code;
-
 			case 3:
 				return data.totalCount;
-
 			case 4:
 				return data.totalDiscount;
 			case 5:
