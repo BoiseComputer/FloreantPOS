@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.floreantpos.model.Ticket;
+import com.floreantpos.model.TicketCookingInstruction;
 import com.floreantpos.model.TicketItem;
 import com.floreantpos.model.TicketItemModifier;
 import com.floreantpos.model.TicketItemModifierGroup;
@@ -35,10 +36,14 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 				
 				List<TicketItemModifierGroup> modifierGroups = ticketItem.getTicketItemModifierGroups();
 				if (modifierGroups != null) {
+					
 					for (TicketItemModifierGroup modifierGroup : modifierGroups) {
+						
 						List<TicketItemModifier> modifiers = modifierGroup.getTicketItemModifiers();
 						if (modifiers != null) {
+							
 							for (TicketItemModifier modifier : modifiers) {
+								
 								if(!modifier.isShouldPrintToKitchen() || modifier.isPrintedToKitchen()) {
 									continue;
 								}
@@ -57,7 +62,6 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 						}
 					}
 				}
-
 			}
 		}
 		
