@@ -83,19 +83,11 @@ public class Application {
 		rootView = RootView.getInstance();
 
 		posWindow.setContentPane(rootView);
-		//posWindow.setSize(ApplicationConfig.getPreferences().getInt("wwidth", 900), ApplicationConfig.getPreferences().getInt("wheight", 650));
-		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		//posWindow.setLocation(ApplicationConfig.getPreferences().getInt("wlocx", ((screenSize.width - posWindow.getWidth()) >> 1)), ApplicationConfig.getPreferences().getInt("wlocy", ((screenSize.height - posWindow.getHeight()) >> 1)));
-		//posWindow.setMinimumSize(new Dimension(1024, 768));
+		posWindow.setSize(ApplicationConfig.getPreferences().getInt("wwidth", 900), ApplicationConfig.getPreferences().getInt("wheight", 650));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		posWindow.setLocation(ApplicationConfig.getPreferences().getInt("wlocx", ((screenSize.width - posWindow.getWidth()) >> 1)), ApplicationConfig.getPreferences().getInt("wlocy", ((screenSize.height - posWindow.getHeight()) >> 1)));
+		posWindow.setMinimumSize(new Dimension(1024, 768));
 		posWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		/**
-		 * Configure for kiosk mode.
-		 */
-		GraphicsDevice window = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[1];
-		posWindow.setUndecorated(true);    
-		window.setFullScreenWindow(posWindow);
-		posWindow.requestFocus();
 		posWindow.setVisible(true);
 		initDatabase();
 	}
