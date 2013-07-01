@@ -1,6 +1,8 @@
 package com.floreantpos.main;
 
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -81,13 +83,20 @@ public class Application {
 		rootView = RootView.getInstance();
 
 		posWindow.setContentPane(rootView);
-		posWindow.setSize(ApplicationConfig.getPreferences().getInt("wwidth", 900), ApplicationConfig.getPreferences().getInt("wheight", 650));
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		posWindow.setLocation(ApplicationConfig.getPreferences().getInt("wlocx", ((screenSize.width - posWindow.getWidth()) >> 1)), ApplicationConfig.getPreferences().getInt("wlocy", ((screenSize.height - posWindow.getHeight()) >> 1)));
-		posWindow.setMinimumSize(new Dimension(800, 600));
+		//posWindow.setSize(ApplicationConfig.getPreferences().getInt("wwidth", 900), ApplicationConfig.getPreferences().getInt("wheight", 650));
+		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//posWindow.setLocation(ApplicationConfig.getPreferences().getInt("wlocx", ((screenSize.width - posWindow.getWidth()) >> 1)), ApplicationConfig.getPreferences().getInt("wlocy", ((screenSize.height - posWindow.getHeight()) >> 1)));
+		//posWindow.setMinimumSize(new Dimension(1024, 768));
 		posWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		/**
+		 * Configure for kiosk mode.
+		 */
+		GraphicsDevice window = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[1];
+		posWindow.setUndecorated(true);    
+		window.setFullScreenWindow(posWindow);
+		posWindow.requestFocus();
 		posWindow.setVisible(true);
-
 		initDatabase();
 	}
 
@@ -102,11 +111,11 @@ public class Application {
 
 	public void initDatabase() {
 		if(!ApplicationConfig.checkDatabaseConnection()) {
-			DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(getPosWindow(), false );
-			dialog.setTitle(com.floreantpos.POSConstants.DATABASE_CONNECTION_ERROR);
-			dialog.setExitOnClose(false);
-			dialog.pack();
-			dialog.open();
+			//DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(getPosWindow(), false );
+			//dialog.setTitle(com.floreantpos.POSConstants.DATABASE_CONNECTION_ERROR);
+			//dialog.setExitOnClose(false);
+			//dialog.pack();
+			//dialog.open();
 		}
 
 
@@ -289,7 +298,7 @@ public class Application {
 	}
 
 	public static String getTitle() {
-		return "Floreant POS - Version " + VERSION;
+		return "Floreant POS";
 	}
 
 	public static ImageIcon getApplicationIcon() {
