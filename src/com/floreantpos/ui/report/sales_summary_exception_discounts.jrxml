@@ -398,11 +398,7 @@ D/NET]]></text>
 					</textElement>
 				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{totalCountSum}]]></textFieldExpression>
 				</textField>
-<<<<<<< .mine
-				<textField isStretchWithOverflow="false" pattern="0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-=======
 				<textField isStretchWithOverflow="false" pattern="0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
->>>>>>> .r114
 					<reportElement
 						x="222"
 						y="3"
@@ -415,11 +411,7 @@ D/NET]]></text>
 					</textElement>
 				<textFieldExpression   class="java.lang.Double"><![CDATA[$V{totalDiscountSum}]]></textFieldExpression>
 				</textField>
-<<<<<<< .mine
-				<textField isStretchWithOverflow="false" pattern="0.00" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-=======
 				<textField isStretchWithOverflow="false" pattern="0.00" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
->>>>>>> .r114
 					<reportElement
 						x="279"
 						y="3"
