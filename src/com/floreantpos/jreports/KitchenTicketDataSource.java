@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.floreantpos.model.Ticket;
-import com.floreantpos.model.TicketCookingInstruction;
 import com.floreantpos.model.TicketItem;
 import com.floreantpos.model.TicketItemModifier;
 import com.floreantpos.model.TicketItemModifierGroup;
@@ -29,22 +28,17 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 		if (ticketItems != null) {
 			for (TicketItem ticketItem : ticketItems) {
 				if(ticketItem.isShouldPrintToKitchen() && !ticketItem.isPrintedToKitchen()) {
-					Row row1 = new Row(ticketItem.getItemCount(), ticketItem.getName(), ticketItem.getId(), null);
+					Row row1 = new Row(ticketItem.getItemCount(), ticketItem.getName(), ticketItem.getId());
 					rows.add(row1);
 				}
-				
 				ticketItem.setPrintedToKitchen(true);
 				
 				List<TicketItemModifierGroup> modifierGroups = ticketItem.getTicketItemModifierGroups();
 				if (modifierGroups != null) {
-					
 					for (TicketItemModifierGroup modifierGroup : modifierGroups) {
-						
 						List<TicketItemModifier> modifiers = modifierGroup.getTicketItemModifiers();
 						if (modifiers != null) {
-							
 							for (TicketItemModifier modifier : modifiers) {
-								
 								if(!modifier.isShouldPrintToKitchen() || modifier.isPrintedToKitchen()) {
 									continue;
 								}
@@ -54,13 +48,16 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 								if (modifier.getModifierType() == TicketItemModifier.EXTRA_MODIFIER) {
 									name = " - Extra " + name;
 								}
-
-								Row row = new Row(modifier.getItemCount(), null, modifier.getId(), name);
+								Row row = new Row();
+								row.setItemCount(modifier.getItemCount());
+								row.setItemName(name);
+								row.setItemNo(modifier.getId());
 								rows.add(row);
 							}
 						}
 					}
 				}
+
 			}
 		}
 		
@@ -91,18 +88,16 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 		private int itemCount;
 		private String itemName;
 		private int itemNo;
-		private String itemModifier;
 		
 		public Row() {
 			super();
 		}
 
-		public Row(int itemCount, String itemName, int itemNo, String itemModifier) {
+		public Row(int itemCount, String itemName, int itemNo) {
 			super();
 			this.itemCount = itemCount;
 			this.itemName = itemName;
 			this.itemNo = itemNo;
-			this.itemModifier = itemModifier;
 		}
 
 		public int getItemCount() {
@@ -113,14 +108,6 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 			this.itemCount = itemCount;
 		}
 
-		public String getItemModifier() {
-			return itemModifier;
-		}
-
-		public void setItemModifier(String itemModifier) {
-			this.itemModifier = itemModifier;
-		}
-		
 		public String getItemName() {
 			return itemName;
 		}
