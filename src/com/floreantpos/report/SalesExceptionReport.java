@@ -256,7 +256,7 @@ public class SalesExceptionReport {
 
 	public class VoidTableModel extends ListTableModel {
 		public VoidTableModel() {
-			setColumnNames(new String[] { "code", "reason", "wast", "qty", "amount" });
+			setColumnNames(new String[] { "code", "reason", "wast", com.floreantpos.POSConstants.QTY, com.floreantpos.POSConstants.AMOUNT });
 		}
 
 		public Object getValueAt(int rowIndex, int columnIndex) {
@@ -286,7 +286,7 @@ public class SalesExceptionReport {
 
 	public class DiscountTableModel extends ListTableModel {
 		public DiscountTableModel() {
-			setColumnNames(new String[] { "no", "name", "code", "totalCount", "totalDiscount", "totalNetSales", "totalGuests", "partySize", "checkSize", "countPercent", "ratioDnet" });
+			setColumnNames(new String[] { "no", com.floreantpos.POSConstants.NAME, "code", "totalCount", "totalDiscount", "totalNetSales", "totalGuests", "partySize", "checkSize", "countPercent", "ratioDnet" });
 		}
 
 		public Object getValueAt(int rowIndex, int columnIndex) {
@@ -295,12 +295,16 @@ public class SalesExceptionReport {
 			switch (columnIndex) {
 			case 0:
 				return data.code;
+
 			case 1:
 				return data.name;
+
 			case 2:
 				return data.code;
+
 			case 3:
 				return data.totalCount;
+
 			case 4:
 				return data.totalDiscount;
 			case 5:

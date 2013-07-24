@@ -1,4 +1,0 @@
-FloreantPOS
-===========
-
-FloreantPOS

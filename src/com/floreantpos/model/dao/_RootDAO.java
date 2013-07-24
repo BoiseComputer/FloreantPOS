@@ -99,8 +99,8 @@ public abstract class _RootDAO extends com.floreantpos.model.dao._BaseRootDAO {
 		configuration = configuration.addClass(UserPermission.class);
 		configuration = configuration.addClass(UserType.class);
 		
-		configuration = configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		configuration = configuration.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+		configuration = configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.DerbyDialect");
+		configuration = configuration.setProperty("hibernate.connection.driver_class", "org.apache.derby.jdbc.ClientDriver");
 		configuration = configuration.setProperty("hibernate.connection.url", ApplicationConfig.getConnectionURL());
 		configuration = configuration.setProperty("hibernate.connection.username", ApplicationConfig.getDatabaseUser());
 		configuration = configuration.setProperty("hibernate.connection.password", ApplicationConfig.getDatabasePassword());

@@ -101,9 +101,9 @@ public class ShiftUtil {
 			Date startTime = new Date(shift.getStartTime().getTime());
 			Date endTime = new Date(shift.getEndTime().getTime());
 			
-			//if(currentTime.after(startTime) && currentTime.before(endTime)) {
+			if(currentTime.after(startTime) && currentTime.before(endTime)) {
 				return shift;
-			//}
+			}
 		}
 		
 		calendar.add(Calendar.DATE, 1);

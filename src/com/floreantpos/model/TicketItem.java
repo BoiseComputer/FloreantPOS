@@ -66,7 +66,6 @@ public class TicketItem extends BaseTicketItem {
 		ticketItemModifierGroup.setMinQuantity(menuItemModifierGroup.getMinQuantity());
 		ticketItemModifierGroup.setMaxQuantity(menuItemModifierGroup.getMaxQuantity());
 		ticketItemModifierGroup.setParent(this);
-		ticketItemModifierGroup.setName(menuItemModifierGroup.toString());
 		addToticketItemModifierGroups(ticketItemModifierGroup);
 
 		return ticketItemModifierGroup;

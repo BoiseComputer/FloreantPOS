@@ -23,7 +23,6 @@ import com.floreantpos.swing.MessageDialog;
 import com.floreantpos.ui.BeanEditor;
 import com.floreantpos.ui.dialog.BeanEditorDialog;
 import com.floreantpos.util.POSUtil;
-import java.awt.BorderLayout;
 
 /**
  *
@@ -50,8 +49,6 @@ public class MenuModifierForm extends BeanEditor {
 		cbTaxes.setModel(new ComboBoxModel(taxes));
 		
 		setBean(modifier);
-		setLayout(new BorderLayout(0, 0));
-		add(jTabbedPane1);
 	}
 
 	/** This method is called from within the constructor to
@@ -64,7 +61,6 @@ public class MenuModifierForm extends BeanEditor {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new com.floreantpos.swing.TransparentPanel();
-        jPanel1.setBorder(null);
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -176,6 +172,23 @@ public class MenuModifierForm extends BeanEditor {
         );
 
         jTabbedPane1.addTab(com.floreantpos.POSConstants.GENERAL, jPanel1);
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 194, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
     
 	private void btnNewTaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewTaxActionPerformed

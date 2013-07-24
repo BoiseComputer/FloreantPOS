@@ -1,8 +1,6 @@
 package com.floreantpos.main;
 
 import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -64,7 +62,7 @@ public class Application {
 	public final static String VERSION = ApplicationConfig.getConfiguration().getString("floreantpos.version");
 
 	private Application() {
-		applicationIcon = new ImageIcon(getClass().getClassLoader().getResource("icons/icon.png"));
+		applicationIcon = new ImageIcon(getClass().getResource("/icons/icon.png"));
 		posWindow = new PosWindow();
 		posWindow.setGlassPaneVisible(true);
 		posWindow.setTitle(getTitle());
@@ -86,9 +84,10 @@ public class Application {
 		posWindow.setSize(ApplicationConfig.getPreferences().getInt("wwidth", 900), ApplicationConfig.getPreferences().getInt("wheight", 650));
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		posWindow.setLocation(ApplicationConfig.getPreferences().getInt("wlocx", ((screenSize.width - posWindow.getWidth()) >> 1)), ApplicationConfig.getPreferences().getInt("wlocy", ((screenSize.height - posWindow.getHeight()) >> 1)));
-		posWindow.setMinimumSize(new Dimension(1024, 768));
+		posWindow.setMinimumSize(new Dimension(800, 600));
 		posWindow.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		posWindow.setVisible(true);
+
 		initDatabase();
 	}
 
@@ -102,18 +101,17 @@ public class Application {
 	}
 
 	public void initDatabase() {
-		//if(!ApplicationConfig.checkDatabaseConnection()) {
-			//DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(getPosWindow(), false );
-			//dialog.setTitle(com.floreantpos.POSConstants.DATABASE_CONNECTION_ERROR);
-			//dialog.setExitOnClose(false);
-			//dialog.pack();
-			//dialog.open();
-		//}
+		if(!ApplicationConfig.checkDatabaseConnection()) {
+			DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(getPosWindow(), false );
+			dialog.setTitle(com.floreantpos.POSConstants.DATABASE_CONNECTION_ERROR);
+			dialog.setExitOnClose(false);
+			dialog.pack();
+			dialog.open();
+		}
 
 
 		try {
 			((GlassPane) posWindow.getGlassPane()).setMessage(com.floreantpos.POSConstants.LOADING);
-			
 			_RootDAO.initialize();
 
 			int terminalId = ApplicationConfig.getTerminalId();
@@ -129,7 +127,6 @@ public class Application {
 
 			TerminalDAO terminalDAO = new TerminalDAO();
 			Terminal terminal2 = terminalDAO.get(new Integer(terminalId));
-			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Terminal");
 			if (terminal2 == null) {
 				terminal2 = new Terminal();
 				terminal2.setId(terminalId);
@@ -141,13 +138,11 @@ public class Application {
 			ApplicationConfig.setTerminalId(terminalId);
 			this.terminal = terminal2;
 
-			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Printers");
 			printConfiguration = new PrinterConfigurationDAO().get(PrinterConfiguration.ID);
 			if(printConfiguration == null) {
 				printConfiguration = new PrinterConfiguration();
 			}
 
-			((GlassPane) posWindow.getGlassPane()).setMessage("Configuring Restaurant");
 			refreshRestaurant();
 
 			Calendar calendar = Calendar.getInstance();
@@ -290,7 +285,7 @@ public class Application {
 	}
 
 	public static String getTitle() {
-		return "Floreant POS";
+		return "Floreant POS - Version " + VERSION;
 	}
 
 	public static ImageIcon getApplicationIcon() {

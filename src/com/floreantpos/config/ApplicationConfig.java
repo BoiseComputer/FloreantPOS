@@ -8,7 +8,6 @@ import java.util.prefs.Preferences;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.derby.jdbc.ClientDriver;
-import com.mysql.jdbc.Driver;
 
 import com.floreantpos.main.Application;
 
@@ -68,7 +67,7 @@ public class ApplicationConfig {
 	}
 
 	public static String getConnectionURL() {
-		return "jdbc:mysql://" + getDatabaseURL() + ":" + getDatabasePort() + "/" + getDatabaseName(); 
+		return "jdbc:derby://" + getDatabaseURL() + ":" + getDatabasePort() + "/" + getDatabaseName(); 
 	}
 	
 	public static void setDatabaseURL(String url) {
@@ -76,7 +75,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabasePort() {
-		return pref.get(DATABASE_PORT, "3306");
+		return pref.get(DATABASE_PORT, "1527");
 	}
 	
 	public static void setDatabasePort(String port) {
@@ -84,7 +83,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabaseName() {
-		return pref.get(DATABASE_NAME, "jpos");
+		return pref.get(DATABASE_NAME, "posdb");
 	}
 	
 	public static void setDatabaseName(String name) {
@@ -92,7 +91,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabaseUser() {
-		return pref.get(DATABASE_USER, "root");
+		return pref.get(DATABASE_USER, "app");
 	}
 	
 	public static void setDatabaseUser(String user) {
@@ -100,7 +99,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabasePassword() {
-		return pref.get(DATABASE_PASSWORD, "Wigley88");
+		return pref.get(DATABASE_PASSWORD, "sa");
 	}
 	
 	public static void setDatabasePassword(String password) {
@@ -108,7 +107,7 @@ public class ApplicationConfig {
 	}
 	
 	public static boolean checkDatabaseConnection(String url, String port, String databaseName, String user, String password) {
-		url = "jdbc:mysql://" + url + ":" + port + "/" + databaseName; 
+		url = "jdbc:derby://" + url + ":" + port + "/" + databaseName; 
 		
 		new ClientDriver();
 		Connection connection = null; 
@@ -120,11 +119,9 @@ public class ApplicationConfig {
 		} finally {
 			try {
 				connection.close();
-				return true;
 			}catch(Throwable t) {}
 		}
 	}
-	
 	public static boolean checkDatabaseConnection() {
 		return checkDatabaseConnection(getDatabaseURL(), getDatabasePort(), getDatabaseName(), getDatabaseUser(), getDatabasePassword());
 	}

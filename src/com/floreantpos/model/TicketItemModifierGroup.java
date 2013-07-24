@@ -150,9 +150,4 @@ public class TicketItemModifierGroup extends BaseTicketItemModifierGroup {
 	public double getTotal() {
 		return getSubtotal() +  getTax();
 	}
-	
-	@Override
-	public String toString() {
-		return getName();
-	}
 }
