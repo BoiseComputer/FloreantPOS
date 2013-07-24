@@ -21,9 +21,6 @@
 	<parameter name="grandTotal" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="taxAmount" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="tipAmount" class="java.lang.String" isForPrompting="false"/>
-	<queryString language="csv">
-		<![CDATA[1,Test,1,]]>
-	</queryString>
 	<field name="itemQty" class="java.lang.String"/>
 	<field name="itemName" class="java.lang.String"/>
 	<field name="itemNo" class="java.lang.String"/>
