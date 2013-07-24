@@ -13,11 +13,11 @@ import com.floreantpos.model.TicketItemModifierGroup;
 public class KitchenTicketDataSource extends AbstractReportDataSource {
 
 	public KitchenTicketDataSource() {
-		super(new String[] {"itemNo", "itemName", "itemQty"});
+		super(new String[] {"itemNo", "itemName", "itemQty", "itemModifier"});
 	}
 	
 	public KitchenTicketDataSource(Ticket ticket) {
-		super(new String[] {"itemNo", "itemName", "itemQty"});
+		super(new String[] {"itemNo", "itemName", "itemQty", "itemModifier"});
 		
 		setTicket(ticket);
 	}
