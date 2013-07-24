@@ -79,6 +79,9 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 			
 		case 2:
 			return String.valueOf(item.getItemCount());
+		
+		case 3:
+			return item.getItemModifier();
 		}
 		
 		return null;
