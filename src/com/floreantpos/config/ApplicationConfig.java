@@ -24,11 +24,8 @@ public class ApplicationConfig {
 	private static PropertiesConfiguration configuration;
 	
 	static {
-		try {
-			configuration = new PropertiesConfiguration(ApplicationConfig.class.getResource("/floreantpos.properties"));
-		} catch (ConfigurationException e) {
-			e.printStackTrace();
-		}
+		configuration = new PropertiesConfiguration();
+		//configuration = new PropertiesConfiguration(ApplicationConfig.class.getResource("/floreantpos.properties"));
 	}
 	
 	public static int getTerminalId() {
@@ -92,7 +89,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabaseUser() {
-		return pref.get(DATABASE_USER, "root");
+		return pref.get(DATABASE_USER, "jpos");
 	}
 	
 	public static void setDatabaseUser(String user) {
@@ -100,7 +97,7 @@ public class ApplicationConfig {
 	}
 	
 	public static String getDatabasePassword() {
-		return pref.get(DATABASE_PASSWORD, "Wigley88");
+		return pref.get(DATABASE_PASSWORD, "jpos");
 	}
 	
 	public static void setDatabasePassword(String password) {
