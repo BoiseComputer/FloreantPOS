@@ -44,7 +44,7 @@ public class KitchenTicketDataSource extends AbstractReportDataSource {
 								}
 								modifier.setPrintedToKitchen(true);
 								
-								String name = " - " + modifier.getName();
+								String name = " ^- " + modifier.getName();
 								if (modifier.getModifierType() == TicketItemModifier.EXTRA_MODIFIER) {
 									name = " - Extra " + name;
 								}

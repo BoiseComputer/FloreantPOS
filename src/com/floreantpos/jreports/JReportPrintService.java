@@ -105,16 +105,16 @@ public class JReportPrintService {
 		map.put("guestCount", com.floreantpos.POSConstants.GUESTS_ + ticket.getNumberOfGuests());
 		map.put("serverName", com.floreantpos.POSConstants.SERVER + ": " + ticket.getOwner());
 		map.put("reportDate", com.floreantpos.POSConstants.DATE + ": " + Application.formatDate(new Date()));
+
 		/**
-		 * Get the cooking instructions
-		 */
-		String _instructs = "";
-		for(TicketCookingInstruction instruct: ticket.getCookingInstructions())
-		{
-			_instructs += instruct.getDescription() + "\n";
-		}
-		map.put("cookingInstructions", _instructs);
-		
+	 	 * Get the cooking instructions
+	 	 */
+	 	String _instructs = "";
+	 	for(TicketCookingInstruction instruct: ticket.getCookingInstructions())
+	 	{
+	 	 _instructs += instruct.getDescription().toString() + "<br />";
+	 	}
+	 	map.put("cookingInstructions", _instructs.toString());
 		InputStream ticketReportStream = null;
 
 		try {
