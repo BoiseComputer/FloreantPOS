@@ -21,6 +21,7 @@ import org.apache.commons.logging.LogFactory;
 import com.floreantpos.main.Application;
 import com.floreantpos.model.Restaurant;
 import com.floreantpos.model.Ticket;
+import com.floreantpos.model.TicketCookingInstruction;
 import com.floreantpos.model.TicketItem;
 import com.floreantpos.model.TicketItemModifier;
 import com.floreantpos.model.TicketItemModifierGroup;
@@ -104,6 +105,15 @@ public class JReportPrintService {
 		map.put("serverName", com.floreantpos.POSConstants.SERVER + ": " + ticket.getOwner());
 		map.put("reportDate", com.floreantpos.POSConstants.DATE + ": " + Application.formatDate(new Date()));
 
+		/**
+	 	 * Get the cooking instructions
+	 	 */
+	 	String _instructs = "";
+	 	for(TicketCookingInstruction instruct: ticket.getCookingInstructions())
+	 	{
+	 	 _instructs += instruct.getDescription().toString() + "<br />";
+	 	}
+	 	map.put("cookingInstructions", _instructs.toString());
 		InputStream ticketReportStream = null;
 
 		try {
